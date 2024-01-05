@@ -19,12 +19,12 @@ public class CarController {
 	private final CarService service;
 
 	@GetMapping
-	public CarDTO find(@Param("id") Long id, @Param("id") String plate) {
+	public CarDTO find(@Param("id") Long id, @Param("plate") String plate) {
 		return service.find(id, plate);
 	}
 
 	@PostMapping
-	public CarDTO save(CarDTO car) {
+	public CarDTO save(@RequestBody CarDTO car) {
 		return service.save(car);
 	}
 

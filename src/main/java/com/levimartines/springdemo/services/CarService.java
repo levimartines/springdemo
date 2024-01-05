@@ -9,10 +9,10 @@ import com.levimartines.springdemo.entities.Item;
 import com.levimartines.springdemo.repositories.CarRepository;
 
 import com.levimartines.springdemo.repositories.EstimateRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +37,6 @@ public class CarService {
 		return car.map(value -> mapper.map(value, CarDTO.class)).orElse(null);
 	}
 
-	@Transactional
 	public CarDTO save(CarDTO dto) {
 		Car car = mapper.map(dto, Car.class);
 		repository.save(car);

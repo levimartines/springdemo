@@ -5,10 +5,7 @@ import com.levimartines.springdemo.entities.Customer;
 import com.levimartines.springdemo.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
@@ -26,7 +23,7 @@ public class CustomerController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Customer> save(Customer customer) {
+	public ResponseEntity<Customer> save(@RequestBody Customer customer) {
 		customer = service.save(customer);
 		return ResponseEntity.created(URI.create("/customers/" + customer.getId())).body(customer);
 	}

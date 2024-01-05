@@ -29,7 +29,7 @@ public class Customer {
 	private String address;
 	private String comments;
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "customer")
 	private List<Car> cars = new ArrayList<>();
 
 }

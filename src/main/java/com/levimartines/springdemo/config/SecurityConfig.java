@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 @EnableWebSecurity
 @Configuration
-public class WebSecurityConfig {
+public class SecurityConfig {
 
 	@Value("${frontend.origin}")
 	private String frontendUrl;
