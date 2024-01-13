@@ -15,4 +15,5 @@ public class EstimateDTO {
 	private Long id;
 	private LocalDate date;
 	private List<ItemDTO> items = new ArrayList<>();
+	private Double total;
 }

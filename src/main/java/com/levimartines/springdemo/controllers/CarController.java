@@ -29,8 +29,8 @@ public class CarController {
 	}
 
 	@PostMapping("/{id}/estimates")
-	public EstimateDTO createEstimate(@PathVariable ("id") Long id, List<ItemDTO> items) {
-		return service.addEstimate(id, items);
+	public EstimateDTO createEstimate(@PathVariable ("id") Long id, @RequestBody List<ItemDTO> items) {
+		return service.createEstimate(id, items);
 	}
 
 }

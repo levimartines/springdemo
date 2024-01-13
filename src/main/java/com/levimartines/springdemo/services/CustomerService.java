@@ -19,7 +19,6 @@ public class CustomerService {
 
 	@Transactional
 	public Customer save(Customer customer) {
-		customer.getCars().forEach(car -> car.setCustomer(customer));
 		repository.save(customer);
 		return customer;
 	}

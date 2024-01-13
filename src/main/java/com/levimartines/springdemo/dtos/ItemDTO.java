@@ -9,5 +9,5 @@ import lombok.*;
 @Builder
 public class ItemDTO {
 	private String name;
-	private Double value;
+	private Double price;
 }

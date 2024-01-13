@@ -19,7 +19,7 @@ public class Item {
 	private Long id;
 
 	private String name;
-	private Double value;
+	private Double price;
 	private boolean deleted;
 
 	@ManyToOne

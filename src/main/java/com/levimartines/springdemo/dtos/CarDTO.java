@@ -17,5 +17,5 @@ public class CarDTO {
 	private String comments;
 	private String plate;
 	private CustomerDTO customer;
-	private List<EstimateDTO> services = new ArrayList<>();
+	private List<EstimateDTO> estimates = new ArrayList<>();
 }

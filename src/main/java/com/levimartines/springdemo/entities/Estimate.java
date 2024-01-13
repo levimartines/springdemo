@@ -25,7 +25,7 @@ public class Estimate {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "car_id", insertable = true, updatable = false)
+	@JoinColumn(name = "car_id", updatable = false)
 	private Car car;
 
 	@OneToMany(mappedBy = "estimate", cascade = CascadeType.ALL)
@@ -33,5 +33,13 @@ public class Estimate {
 	private LocalDate date = LocalDate.now();
 	private boolean done;
 	private boolean deleted;
+
+	public Double getTotal() {
+		Double total = 0.0;
+		for (Item item : items) {
+			total += item.getPrice();
+		}
+		return total;
+	}
 
 }

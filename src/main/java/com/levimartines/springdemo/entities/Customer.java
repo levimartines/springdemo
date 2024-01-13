@@ -7,9 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -28,8 +25,5 @@ public class Customer {
 	@NotNull
 	private String address;
 	private String comments;
-
-	@OneToMany(mappedBy = "customer")
-	private List<Car> cars = new ArrayList<>();
 
 }

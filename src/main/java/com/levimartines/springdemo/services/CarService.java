@@ -26,23 +26,6 @@ public class CarService {
 	private final EstimateRepository estimateRepository;
 	private final ModelMapper mapper;
 
-
-	public CarDTO findById(Long id) {
-		Optional<Car> car = repository.findById(id);
-		return car.map(value -> mapper.map(value, CarDTO.class)).orElse(null);
-	}
-
-	public CarDTO findByPlate(String plate) {
-		Optional<Car> car = repository.findByPlate(plate);
-		return car.map(value -> mapper.map(value, CarDTO.class)).orElse(null);
-	}
-
-	public CarDTO save(CarDTO dto) {
-		Car car = mapper.map(dto, Car.class);
-		repository.save(car);
-		return mapper.map(car, CarDTO.class);
-	}
-
 	public CarDTO find(Long id, String plate) {
 		if (id == null) {
 			return findByPlate(plate);
@@ -50,16 +33,37 @@ public class CarService {
 		return findById(id);
 	}
 
+	public CarDTO save(CarDTO dto) {
+		Car car = mapper.map(dto, Car.class);
+		car.setPlate(dto.getPlate().toUpperCase());
+		repository.save(car);
+		return mapper.map(car, CarDTO.class);
+	}
+
+	private CarDTO findById(Long id) {
+		Optional<Car> car = repository.findById(id);
+		return car.map(value -> mapper.map(value, CarDTO.class)).orElse(null);
+	}
+
+	private CarDTO findByPlate(String plate) {
+		Optional<Car> car = repository.findByPlate(plate);
+		return car.map(value -> mapper.map(value, CarDTO.class)).orElse(null);
+	}
+
 	@Transactional
-	public EstimateDTO addEstimate(Long id, List<ItemDTO> items) {
+	public EstimateDTO createEstimate(Long id, List<ItemDTO> items) {
 		Optional<Car> car = repository.findById(id);
 		if (car.isEmpty()) {
 			return null;
 		}
 		Estimate estimate = new Estimate();
 		estimate.setCar(car.get());
-		estimate.setItems(items.stream().map(item -> mapper.map(item, Item.class)).toList());
-		estimate.getItems().forEach(item -> item.setEstimate(estimate));
+		List<Item> estimateItems = items.stream().map(item -> {
+			Item map = mapper.map(item, Item.class);
+			map.setEstimate(estimate);
+			return map;
+		}).toList();
+		estimate.setItems(estimateItems);
 		estimateRepository.save(estimate);
 
 		return mapper.map(estimate, EstimateDTO.class);
