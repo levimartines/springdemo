@@ -29,6 +29,7 @@ public class Car {
 	private Customer customer;
 
 	@OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+	@Builder.Default
 	private List<Estimate> estimates = new ArrayList<>();
 
 }

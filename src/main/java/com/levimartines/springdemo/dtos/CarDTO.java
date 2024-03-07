@@ -17,5 +17,6 @@ public class CarDTO {
 	private String comments;
 	private String plate;
 	private CustomerDTO customer;
+	@Builder.Default
 	private List<EstimateDTO> estimates = new ArrayList<>();
 }

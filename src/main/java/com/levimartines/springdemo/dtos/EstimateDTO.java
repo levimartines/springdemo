@@ -14,6 +14,7 @@ import java.util.List;
 public class EstimateDTO {
 	private Long id;
 	private LocalDate date;
+	@Builder.Default
 	private List<ItemDTO> items = new ArrayList<>();
 	private Double total;
 }

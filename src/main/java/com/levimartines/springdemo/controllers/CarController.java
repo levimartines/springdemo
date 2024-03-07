@@ -5,7 +5,6 @@ import com.levimartines.springdemo.dtos.EstimateDTO;
 import com.levimartines.springdemo.dtos.ItemDTO;
 import com.levimartines.springdemo.services.CarService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +18,8 @@ public class CarController {
 	private final CarService service;
 
 	@GetMapping
-	public CarDTO find(@Param("id") Long id, @Param("plate") String plate) {
+	public CarDTO find(@RequestParam(name = "id", required = false) Long id,
+					   @RequestParam(name = "plate", required = false) String plate) {
 		return service.find(id, plate);
 	}
 

@@ -1,28 +1,9 @@
 spring:
-  datasource:
-    username: postgres
-    password: postgres
-    url: jdbc:postgresql://localhost:5432/spring_demo
+  profiles:
+    active: local
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: debug
-        orm:
-          jdbc:
-            bind: trace
-
-okta:
-  oauth2:
-    issuer: https://dev-10789051.okta.com/oauth2/default
-    client-id: 0oab99obojpDufh9X5d7
-
-frontend:
-  origin: http://localhost:4200

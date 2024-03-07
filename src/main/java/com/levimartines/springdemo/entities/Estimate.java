@@ -29,7 +29,9 @@ public class Estimate {
 	private Car car;
 
 	@OneToMany(mappedBy = "estimate", cascade = CascadeType.ALL)
+	@Builder.Default
 	private List<Item> items = new ArrayList<>();
+	@Builder.Default
 	private LocalDate date = LocalDate.now();
 	private boolean done;
 	private boolean deleted;
